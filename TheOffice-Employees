@@ -1,0 +1,45 @@
+CREATE DATABASE TheOffice
+
+	CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    DepartmentID INT,
+    Salary DECIMAL(10, 2)
+	FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
+
+	CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(50)
+);
+
+
+	-- Insert values into the Departments table
+INSERT INTO Departments (DepartmentID, DepartmentName)
+VALUES
+    (1, 'HR'),
+    (2, 'Finance'),
+    (3, 'Marketing'),
+    (4, 'Engineering'),
+    (5, 'Sales');
+
+-- Insert values into the Employees table
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Email, DepartmentID, Salary)
+VALUES
+    (101, 'John', 'Doe', 'john.doe@example.com', 4, 75000.00),  
+    (102, 'Jane', 'Smith', 'jane.smith@example.com', 2, 60000.00),  
+    (103, 'David', 'Johnson', 'david.johnson@example.com', 1, 55000.00), 
+    (104, 'Sarah', 'Williams', 'sarah.williams@example.com', 4, 80000.00),  
+    (105, 'Michael', 'Brown', 'michael.brown@example.com', 3, 62000.00);  
+
+
+	SELECT E.EmployeeID, E.FirstName, E.LastName, E.Email, D.DepartmentName
+FROM Employees AS E
+INNER JOIN Departments AS D ON E.DepartmentID = D.DepartmentID
+
+
+
+	
